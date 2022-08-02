@@ -1,0 +1,35 @@
+server:
+  servlet:
+    context-path: /auth-service
+  port: ${SERVER_PORT:9191}
+  tomcat:
+    threads:
+      max: ${TOMCAT_MAX_THREADS:50}
+      min-spare: ${TOMCAT_MIN_THREADS:20}
+    accept-count: ${TOMCAT_ACCEPT_COUNT:300}
+    basedir: /
+    accesslog:
+      enabled: true
+      directory: "/logs/auth-service"
+      prefix: access_log
+      buffered: false
+      suffix: .log
+      file-date-format: .yyyy-MM-dd
+      pattern: "%h %l %u %t %r %s %b %D"
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_info?createDatabaseIfNotExist=true
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+    initialization-mode: always
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: false
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
