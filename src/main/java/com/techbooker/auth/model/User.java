@@ -33,6 +33,12 @@ public class User implements Serializable {
     private String password;
     @Column(name = "email")
     private String email;
+    @Column(name = "fName")
+    private String firstName;
+    @Column(name = "lName")
+    private String lastName;
+    @Column(name = "mobileNumber")
+    private String mobileNumber;
     @Column(name = "enabled")
     private boolean enabled;
     @Column(name = "accountNonExpired")
@@ -41,7 +47,6 @@ public class User implements Serializable {
     private boolean credentialsNonExpired;
     @Column(name = "accountNonLocked")
     private boolean accountNonLocked;
-
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "role_user", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
