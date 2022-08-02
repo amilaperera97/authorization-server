@@ -34,7 +34,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        http.authorizeRequests().antMatchers(API_V1.concat(PUBLIC).concat("/**")).permitAll()
+        http.authorizeRequests().antMatchers(
+                        API_V1.concat(PUBLIC).concat("/**"),
+                        "/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources/**",
+                        "/configuration/security",
+                        "/swagger-ui",
+                        "/webjars/**").permitAll()
                 .anyRequest().authenticated().and().httpBasic();
         http.csrf().disable();
     }
