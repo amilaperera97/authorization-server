@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  app:
+    container_name: authorizaton-service
+    image: authorizaton-service
+    build: ./
+    ports:
+      - "9191:9191"
+    depends_on:
+      - mysqldb
+  mysqldb:
+    image: mysql:5.7
+    container_name: mysql_auth_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: 'auth_info'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'admin1'
+      MYSQL_ROOT_PASSWORD: 'admin1'
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+
+volumes:
+    db:
