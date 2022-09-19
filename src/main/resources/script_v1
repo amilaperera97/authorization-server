@@ -1,0 +1,26 @@
+insert into role (name) values (ROLE_ADMIN);
+insert into role (name) values ('ROLE_USER');
+
+insert into auth_info.oauth_client_details (client_id, client_secret, web_server_redirect_uri, scope, access_token_validity, refresh_token_validity, resource_ids, authorized_grant_types, authorities, additional_information, autoapprove)
+values  ('mobile', '{bcrypt}$2a$10$gPhlXZfms0EpNHX0.HHptOhoFD1AoxSr/yUIdTqA8vtjeP4zi0DDu', 'http://localhost:8080/login', 'READ,WRITE', 3600, 10000, 'mobile', 'authorization_code,password,refresh_token,implicit', null, '{}', null);
+
+insert into auth_info.permission (id, name)
+values  (9, 'create_branch'),
+        (1, 'create_profile'),
+        (5, 'create_shop'),
+        (12, 'delete_branch'),
+        (4, 'delete_profile'),
+        (8, 'delete_shop'),
+        (10, 'read_branch'),
+        (2, 'read_profile'),
+        (6, 'read_shop'),
+        (13, 'search_item'),
+        (11, 'update_branch'),
+        (3, 'update_profile'),
+        (7, 'update_shop');
+
+insert into auth_info.role (id, name)
+values  (1, 'ROLE_ADMIN'),
+        (3, 'ROLE_OPERATOR'),
+        (2, 'ROLE_USER');
+
