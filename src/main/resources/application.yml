@@ -19,9 +19,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/auth_info?createDatabaseIfNotExist=true
-    username: root
-    password:
+    url: ${MYSQL_DB:jdbc:mysql://localhost:3306}/auth_info?createDatabaseIfNotExist=true
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PW:root}
     driver-class-name: com.mysql.jdbc.Driver
     initialization-mode: always
   jpa:
