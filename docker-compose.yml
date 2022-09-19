@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.3'
 services:
   app:
     container_name: authorizaton-service
@@ -7,16 +7,20 @@ services:
     ports:
       - "9191:9191"
     depends_on:
-      - mq
-  mq:
+      - mysqldb
+  mysqldb:
     image: mysql:5.7
+    container_name: mysql_auth_db
     restart: unless-stopped
-    env_file: ./profile/PROFILE-PROD
     environment:
-      - MYSQL_ROOT_USER=$MYSQL_USERNAME
-      - MYSQL_ROOT_PASSWORD=$MYSQL_PW
-      - MYSQL_DATABASE=$MYSQL_DB
+      MYSQL_DATABASE: 'auth_info'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'admin1'
+      MYSQL_ROOT_PASSWORD: 'admin1'
     ports:
       - "3306:3306"
     volumes:
       - db:/var/lib/mysql
+
+volumes:
+    db:
